@@ -156,9 +156,9 @@
 
 // export {isRightTimeMetting};
 
-const mother = 'Natasha';
-const father = 'Vladimir';
-//
-console.log('файл foo.js запущен');
-export { mother, father };
+// const mother = 'Natasha';
+// const father = 'Vladimir';
+// //
+// console.log('файл foo.js запущен');
+// export { mother, father };
 

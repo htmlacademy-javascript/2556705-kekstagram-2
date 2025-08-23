@@ -11,15 +11,15 @@ const uploadFile = imgUploadForm.querySelector('#upload-file');
 const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const smaller = imgUploadForm.querySelector('.scale__control--smaller');
 const bigger = imgUploadForm.querySelector('.scale__control--bigger');
-const img = imgUploadForm.querySelector('img-upload__prewiew');
-const scaleControl = imgUploadForm.querySelector('scale__control--value');
+const img = imgUploadForm.querySelector('.img-upload__preview img'); /*img */
+const scaleControl = imgUploadForm.querySelector('.scale__control--value');
 const effectLevel = imgUploadForm.querySelector('.img-upload__effect-level');
 const effectsList = imgUploadForm.querySelector('.effects__list');
-const inputHashtag = imgUploadForm.querySelector('text__hashtags');
+const inputHashtag = imgUploadForm.querySelector('.text__hashtags');
 
 let scale = 1;
-const prictine = new Prictine(imgUploadForm, {
-  classTo: '.img-upload__form',
+const pristine = new Pristine(imgUploadForm, {
+  classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
@@ -36,7 +36,7 @@ const onImgUploadClose = () => {
 };
 
 function onEscapeKeydown (evt) {
-  if(isEscapeKey(evt) && !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description')) {
+  if(isEscapeKey(evt) && !evt.target.classList.contains('.text__hashtags') && !evt.target.classList.contains('.text__description')) {
     evt.preventDefault();
     onImgUploadClose();
   }
@@ -49,31 +49,34 @@ const onPhotoSelect = () => {
   document.addEventListener('keydown', onEscapeKeydown);
 };
 
-const onSmallerClick = () {
+const onSmallerClick = () => {
   if (scale > SCALE_STEP) {
-    img.style.transform = `scale(${scale -= SCALE_STEP})`;
+    scale -= SCALE_STEP;
+    img.style.transform = `scale(${scale})`;
     scaleControl.value = `${scale * 100}%`;
   }
 };
 
-onBiggerClick = () {
+const onBiggerClick = () => {
   if (scale < 1) {
-    img.style.transform = `scale(${scale += SCALE_STEP})`;
+    scale += SCALE_STEP;
+    img.style.transform = `scale(${scale})`;
     scaleControl.value = `${scale * 100}%`;
   }
 };
 
-const onHashtagInput = () => { isHashtagsValid(inputHashtag.value); };
+const onHashtagInput = () => isHashtagsValid(inputHashtag.value);
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
-
-  if (pristine.validate()) {
+  const valid = pristine.validate();
+  if (valid) {
     inputHashtag.value = inputHashtag.value.trim().replaceAll(/\s+/g, ' ');
     imgUploadForm.submit();
   }
-}
+};
 
+console.log('Файл img-upload-form.js Работает');
 pristine.addValidator(inputHashtag, isHashtagsValid, error, 2, false);
 
 uploadFile.addEventListener('change', onPhotoSelect);
@@ -86,5 +89,6 @@ effectsList.addEventListener('change', onEffectChange);
 
 inputHashtag.addEventListener('input', onHashtagInput);
 
-imgUploadForm.addEventListener('submit', onFormSubmit)
+imgUploadForm.addEventListener('submit', onFormSubmit);
+
 

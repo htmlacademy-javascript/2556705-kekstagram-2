@@ -1,5 +1,9 @@
 import {getRandomArrayElement, getUniqueArrayNumber, getRandomArrayNumber} from './util.js';
-
+/*
+const Effects = {
+  none: sliderOptionsObject
+}
+*/
 const PHOTOS_NUMBER = 25;
 const ID = [1, 2500];
 const URL = [1, 25];

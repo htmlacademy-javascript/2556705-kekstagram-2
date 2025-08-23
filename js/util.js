@@ -15,7 +15,7 @@ const getUniqueInteger = (min, max) => {
       currentInteger = getRandomInteger(min, max);
     }
     uniqueInteger.push(currentInteger);
-    return currentInteger
+    return currentInteger;
   };
 };
 
