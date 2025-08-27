@@ -5,7 +5,7 @@ const Effects = {
 }
 */
 const PHOTOS_NUMBER = 25;
-const ID = [1, 2500];
+const ID = [1, 2500]; //!!!!!!!!!!!!!!!!!!!!!!!!
 const URL = [1, 25];
 const LIKES = [15, 200];
 const COMMENTS_ID = [1, 1000];

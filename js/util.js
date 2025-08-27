@@ -4,7 +4,7 @@ const getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (upper - lower + 1) + lower);
 };
 
-const getUniqueInteger = (min, max) => {
+const getUniqueInteger = (min, max) => { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   const uniqueInteger = [];
   return function () {
     let currentInteger = getRandomInteger(min, max);
@@ -24,7 +24,7 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 console.log('Файл util.js Работает');
 
 const getRandomArrayElement = (element) => element[getRandomInteger(0, element.length - 1)];
-const getUniqueArrayNumber = (number) => getUniqueInteger(number[0], number.at(-1));
+const getUniqueArrayNumber = (number) => getUniqueInteger(number[0], number.at(-1)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const getRandomArrayNumber = (number) => getRandomInteger(number[0], number.at(-1));
 
 export {getRandomArrayElement, getUniqueArrayNumber, getRandomArrayNumber, isEscapeKey};
