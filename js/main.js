@@ -13,7 +13,7 @@ const bootstrap = async () => {
     const photos = await getData();
     savePhotos(photos);
     renderThumbnails(photos);
-    configFilter(photos)
+    configFilter(photos);
   } catch (error) {
     showErrorMessage(error.message);
   }
