@@ -24,6 +24,7 @@ slider.noUiSlider.on('update', () => {
 effectLevel.classList.add('hidden');
 
 const onEffectChange = (evt) => {
+  console.log(evt);
   const effect = evt.target.value;
   if(effect === 'none') {
     effectLevel.classList.add('hidden');

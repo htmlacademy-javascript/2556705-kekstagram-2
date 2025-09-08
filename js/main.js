@@ -1,15 +1,23 @@
-import {picturesListElement} from './render-cards.js';
-import {openBigPicture} from './render-photo.js';
-
+import {savePhotos} from './photo-state.js';
 import './img-upload-form.js';
-
+import './render-photo.js';
+// import { photos } from './data.js';
+import { getData, sendData } from './api.js';
+import {renderThumbnails} from './render-cards.js';
+import { showErrorMessage } from './util.js';
+import { configFilter } from './filter.js';
 console.log('Файл main.js Работает');
-picturesListElement.addEventListener('click', (evt) => {
-  const currentPicture = evt.target.closest('.picture');
-  // evt.preventDefault();
-  if (currentPicture) {
-    openBigPicture(currentPicture.dataset.pictureId);
-  }
-});
 
+const bootstrap = async () => {
+  try {
+    const photos = await getData();
+    savePhotos(photos);
+    renderThumbnails(photos);
+    configFilter(photos)
+  } catch (error) {
+    showErrorMessage(error.message);
+  }
+};
+
+bootstrap();
 

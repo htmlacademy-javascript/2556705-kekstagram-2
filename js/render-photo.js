@@ -1,5 +1,6 @@
-import {photos} from './data.js';
+import {getPhotoById} from './photo-state.js';
 import {clearComments, renderComments} from './render-comments.js';
+import {picturesListElement} from './render-cards.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img').querySelector('img');
@@ -32,7 +33,7 @@ const closeBigPicture = () => {
 };
 
 const openBigPicture = (pictureId) => {
-  const currentPhoto = photos.find((photo) => photo.id === Number(pictureId));
+  const currentPhoto = getPhotoById(pictureId);
   bigPictureImg.src = currentPhoto.url;
   likesCount.textContent = currentPhoto.likes;
   commentsCaption.textContent = currentPhoto.description;
@@ -43,5 +44,12 @@ const openBigPicture = (pictureId) => {
   document.addEventListener('keydown', onEscKeydown);
 };
 
+picturesListElement.addEventListener('click', (evt) => {
+  const currentPicture = evt.target.closest('.picture');
+  // evt.preventDefault();
+  if (currentPicture) {
+    openBigPicture(currentPicture.dataset.pictureId);
+  }
+});
 console.log('render-photo Подключен');
-export {openBigPicture};
+
