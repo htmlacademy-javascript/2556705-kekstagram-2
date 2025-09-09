@@ -1,4 +1,4 @@
-import {isEscapeKey} from './util.js';
+import {isEscapeKey, showErrorMessage} from './util.js';
 import {onEffectChange} from './effects-slider.js';
 import {error, isHashtagsValid} from './check-hashtag-validity.js';
 import { sendData } from './api.js';
@@ -120,6 +120,29 @@ const formSubmitHandler = (evt) => {
   sendFormData(evt.target);
 };
 
+const uploadFileInputElement = document.querySelector('.img-upload input[type=file]');
+// const label = document.querySelector('img-upload__label');
+const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+
+function onFileInputChange (evt) {
+  evt.preventDefault();
+  const file = uploadFileInputElement.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
+  if (matches) {
+    const url = URL.createObjectURL(file);
+    img.src = url;
+    // uploadPrewiewEffects.forEach((item) => {
+    //   item.style.backgroundImage = `url(${url})`;
+  } else {
+    document.body.classList.remove('modal-open');
+    uploadOverlay.classList.add('hidden');
+    showErrorMessage();
+    return;
+  }
+  // openUploadWindow();
+}
+
 console.log('Файл img-upload-form.js Работает');
 pristine.addValidator(inputHashtag, isHashtagsValid, error, 2, false);
 
@@ -135,4 +158,5 @@ inputHashtag.addEventListener('input', onHashtagInput);
 
 imgUploadForm.addEventListener('submit', formSubmitHandler);
 
+uploadFileInputElement.addEventListener('change', onFileInputChange);
 

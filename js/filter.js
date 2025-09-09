@@ -8,7 +8,7 @@ let pictures = [];
 const filterElement = document.querySelector('.img-filters');
 const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 
-// const debounceRender = debounce(renderThumbnails);
+const debounceRender = debounce(renderThumbnails);
 
 function onFilterChange (evt) {
   const targetButton = evt.target;
@@ -38,7 +38,7 @@ function applyFilter() {
   if(currentFilter === 'filter-discussed') {
     filteredPictures = pictures.toSorted((a,b) => b.comments.length - a.comments.length);
   }
-  debounce(renderThumbnails(filteredPictures));
+  debounceRender(filteredPictures);
 }
 
 function configFilter(picturesData) {
