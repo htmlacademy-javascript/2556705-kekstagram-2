@@ -1,4 +1,4 @@
-import { isEscapeKey } from "./util";
+import { isEscapeKey } from './util';
 
 const body = document.body;
 
@@ -20,4 +20,4 @@ export const appendNotification = (template, trigger = null) => {
   body.addEventListener('click', closeNotification);
   body.addEventListener('keydown', closeNotification);
 };
-console.log('notification.js работает');
+

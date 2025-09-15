@@ -1,18 +1,20 @@
-import {isEscapeKey, showErrorMessage} from './util.js';
-import {onEffectChange} from './effects-slider.js';
-import {error, isHashtagsValid} from './check-hashtag-validity.js';
+import { isEscapeKey, showErrorMessage } from './util.js';
+import { onEffectChange } from './effects-slider.js';
+import { error, isHashtagsValid } from './check-hashtag-validity.js';
 import { sendData } from './api.js';
-import { appendNotification} from './notification.js';
+import { appendNotification } from './notification.js';
+
 const SCALE_STEP = 0.25;
+const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
 
 const imgUploadForm = document.querySelector('.img-upload__form');
-
 const uploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
 const uploadFile = imgUploadForm.querySelector('#upload-file');
+const uploadFileInputElement = document.querySelector('.img-upload input[type=file]');
 const imgUploadCancel = imgUploadForm.querySelector('.img-upload__cancel');
 const smaller = imgUploadForm.querySelector('.scale__control--smaller');
 const bigger = imgUploadForm.querySelector('.scale__control--bigger');
-const img = imgUploadForm.querySelector('.img-upload__preview img'); /*img */
+const img = imgUploadForm.querySelector('.img-upload__preview img');
 const imgSlider = imgUploadForm.querySelector('.img-upload__preview');
 const scaleControl = imgUploadForm.querySelector('.scale__control--value');
 const effectLevel = imgUploadForm.querySelector('.img-upload__effect-level');
@@ -22,12 +24,12 @@ const formSubmitButton = imgUploadForm.querySelector('.img-upload__submit');
 const templateSuccess = document.querySelector('#success').content;
 const templateError = document.querySelector('#error').content;
 
-let scale = 1;
-
 const SubmitButtonText = {
   IDLE: 'Сохранить',
   SENDING: 'Сохраняю...',
 };
+
+let scale = 1;
 
 const disabledButton = (text) => {
   formSubmitButton.disabled = true;
@@ -56,17 +58,9 @@ const onImgUploadClose = () => {
   document.removeEventListener('keydown', onEscapeKeydown);
 };
 
-// const closeEditingForm = (formElement) => {
-//   scale = 1;
-//   img.style.transform = `scale(${scale})`;
-//   img.style.filter = 'none';
-//   formElement.reset();
-// };
-
 function onEscapeKeydown (evt) {
   if(isEscapeKey(evt) && !evt.target.classList.contains('.text__hashtags') && !evt.target.classList.contains('.text__description')) {
     evt.preventDefault();
-    // closeEditingForm(imgUploadForm);
     onImgUploadClose();
   }
 }
@@ -102,16 +96,13 @@ const sendFormData = async (formElement) => {
     inputHashtag.value = inputHashtag.value.trim().replaceAll(/\s+/g, ' ');
     disabledButton(SubmitButtonText.SENDING);
     try {
-    // imgUploadForm.submit();
       await sendData(new FormData(formElement));
       appendNotification(templateSuccess, () => onImgUploadClose());
-      // onImgUploadClose();
-    } catch (error) {
+    } catch (err) {
       appendNotification(templateError);
     } finally {
       enabledButton(SubmitButtonText.IDLE);
     }
-    // onImgUploadClose();
   }
 };
 
@@ -119,10 +110,6 @@ const formSubmitHandler = (evt) => {
   evt.preventDefault();
   sendFormData(evt.target);
 };
-
-const uploadFileInputElement = document.querySelector('.img-upload input[type=file]');
-// const label = document.querySelector('img-upload__label');
-const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
 
 function onFileInputChange (evt) {
   evt.preventDefault();
@@ -132,31 +119,18 @@ function onFileInputChange (evt) {
   if (matches) {
     const url = URL.createObjectURL(file);
     img.src = url;
-    // uploadPrewiewEffects.forEach((item) => {
-    //   item.style.backgroundImage = `url(${url})`;
   } else {
     document.body.classList.remove('modal-open');
     uploadOverlay.classList.add('hidden');
     showErrorMessage();
-    return;
   }
-  // openUploadWindow();
 }
 
-console.log('Файл img-upload-form.js Работает');
 pristine.addValidator(inputHashtag, isHashtagsValid, error, 2, false);
-
 uploadFile.addEventListener('change', onPhotoSelect);
-
 smaller.addEventListener('click', onSmallerClick);
-
 bigger.addEventListener('click', onBiggerClick);
-
 effectsList.addEventListener('change', onEffectChange);
-
 inputHashtag.addEventListener('input', onHashtagInput);
-
 imgUploadForm.addEventListener('submit', formSubmitHandler);
-
 uploadFileInputElement.addEventListener('change', onFileInputChange);
-

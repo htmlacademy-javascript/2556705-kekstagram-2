@@ -1,15 +1,12 @@
-import {getPhotoById} from './photo-state.js';
-import {clearComments, renderComments} from './render-comments.js';
-import {picturesListElement} from './render-cards.js';
+import { getPhotoById } from './photo-state.js';
+import { clearComments, renderComments } from './render-comments.js';
+import { picturesListElement } from './render-cards.js';
+import { isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img').querySelector('img');
 const likesCount = bigPicture.querySelector('.likes-count');
-// const socialComments = bigPicture.querySelector('.social__comments');
-// const socialCommentTemplate = socialComments.querySelector('.social__comment');
 const commentsCaption = bigPicture.querySelector('.social__caption');
-// const commentsCount = bigPicture.querySelector('.social__comment-count');
-// const commentsLoader = bigPicture.querySelector('.social__comments-loader');
 const bigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
 
 const onBigPictureCancelClick = () => {
@@ -17,7 +14,7 @@ const onBigPictureCancelClick = () => {
 };
 
 const onEscKeydown = (evt) => {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPicture();
   }
@@ -46,10 +43,7 @@ const openBigPicture = (pictureId) => {
 
 picturesListElement.addEventListener('click', (evt) => {
   const currentPicture = evt.target.closest('.picture');
-  // evt.preventDefault();
   if (currentPicture) {
     openBigPicture(currentPicture.dataset.pictureId);
   }
 });
-console.log('render-photo Подключен');
-

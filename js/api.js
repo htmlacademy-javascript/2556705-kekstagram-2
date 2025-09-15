@@ -23,5 +23,9 @@ const load = async (route, method = Method.GET, body = null) => {
 const getData = async () => await load(Route.GET_DATA);
 
 const sendData = async (body) => await load(Route.SEND_DATA, Method.POST, body);
+<<<<<<< Updated upstream
 console.log('api.js работает');
 export {getData, sendData};
+=======
+export { getData, sendData };
+>>>>>>> Stashed changes

@@ -1,12 +1,13 @@
 import { renderThumbnails } from './render-cards';
-import {debounce} from './util.js';
+import { debounce } from './util.js';
 
 const MAX_PICTURES_COUNT = 10;
+const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 
 let currentFilter = 'filter-default';
 let pictures = [];
+
 const filterElement = document.querySelector('.img-filters');
-const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 
 const debounceRender = debounce(renderThumbnails);
 
@@ -16,14 +17,12 @@ function onFilterChange (evt) {
   if(!targetButton.matches('button')) {
     return;
   }
-
   if(activeButton === targetButton) {
     return;
   }
   activeButton.classList.toggle(ACTIVE_BUTTON_CLASS);
   targetButton.classList.toggle(ACTIVE_BUTTON_CLASS);
   currentFilter = targetButton.getAttribute('id');
-
   applyFilter();
 }
 
@@ -48,4 +47,3 @@ function configFilter(picturesData) {
 }
 
 export { configFilter };
-console.log('filter подключен');

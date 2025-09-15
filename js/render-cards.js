@@ -1,9 +1,7 @@
-// import {photos} from './data.js';
 const picturesListElement = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesFragment = document.createDocumentFragment();
 const renderThumbnails = (photo) => {
-
   photo.forEach(({id, url, description, likes, comments}) => {
     picturesListElement.querySelectorAll('.picture').forEach((item) => item.remove());
     const pictureElement = pictureTemplate.cloneNode(true);
@@ -15,9 +13,7 @@ const renderThumbnails = (photo) => {
     picturesFragment.appendChild(pictureElement);
   });
   picturesListElement.appendChild(picturesFragment);
-  console.log(picturesListElement.querySelectorAll('.picture'));
 };
 
-export {picturesListElement, renderThumbnails};
-console.log('render-cards Подключен');
-console.log(picturesListElement);
+export { picturesListElement, renderThumbnails };
+

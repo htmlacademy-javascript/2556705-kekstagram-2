@@ -25,8 +25,6 @@ const renderNextComments = () => {
   socialComments.appendChild(socialCommentsFragment);
   commentsCount.querySelector('.social__comment-shown-count').textContent = renderedCommentsLength;
   commentsCount.querySelector('.social__comment-total-count').textContent = comments.length;
-  // console.log(renderedCommentsLength);
-  // console.log(comments.length);
   if (renderedCommentsLength >= comments.length) {
     commentsLoader.classList.add('hidden');
   }
@@ -45,5 +43,5 @@ const renderComments = (currentPhotoComments) => {
   renderNextComments();
   commentsLoader.addEventListener('click', renderNextComments);
 };
-console.log('render-comments Подключен');
-export {clearComments, renderComments};
+
+export { clearComments, renderComments };
