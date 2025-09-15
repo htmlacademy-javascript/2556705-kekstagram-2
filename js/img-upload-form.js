@@ -6,6 +6,10 @@ import { appendNotification } from './notification.js';
 
 const SCALE_STEP = 0.25;
 const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...',
+};
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
@@ -23,11 +27,6 @@ const inputHashtag = imgUploadForm.querySelector('.text__hashtags');
 const formSubmitButton = imgUploadForm.querySelector('.img-upload__submit');
 const templateSuccess = document.querySelector('#success').content;
 const templateError = document.querySelector('#error').content;
-
-const SubmitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...',
-};
 
 let scale = 1;
 
