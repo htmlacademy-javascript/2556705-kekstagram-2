@@ -56,8 +56,13 @@ const isHashtagsValid = (value) => {
   });
 };
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 console.log('Файл check-hashtag-validity.js Работает');
 export {error, isHashtagsValid};
+=======
+
+export { error, isHashtagsValid };
+>>>>>>> Stashed changes
 =======
 
 export { error, isHashtagsValid };
