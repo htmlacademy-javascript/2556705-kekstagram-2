@@ -4,12 +4,15 @@ import { error, isHashtagsValid } from './check-hashtag-validity.js';
 import { sendData } from './api.js';
 import { appendNotification } from './notification.js';
 
-const SCALE_STEP = 0.25;
 const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+const SCALE_STEP = 0.25;
+
 const SubmitButtonText = {
   IDLE: 'Сохранить',
   SENDING: 'Сохраняю...',
 };
+
+let scale = 1;
 
 const imgUploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = imgUploadForm.querySelector('.img-upload__overlay');
@@ -27,8 +30,6 @@ const inputHashtag = imgUploadForm.querySelector('.text__hashtags');
 const formSubmitButton = imgUploadForm.querySelector('.img-upload__submit');
 const templateSuccess = document.querySelector('#success').content;
 const templateError = document.querySelector('#error').content;
-
-let scale = 1;
 
 const disabledButton = (text) => {
   formSubmitButton.disabled = true;

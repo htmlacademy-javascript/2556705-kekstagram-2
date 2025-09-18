@@ -1,9 +1,9 @@
-const isEscapeKey = (evt) => evt.key === 'Escape';
-
 const REMOVE_MESSAGE_TIMEOUT = 5000;
 
 const errorLoadDataTemplate = document.querySelector('#data-error').content;
 const body = document.body;
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const showErrorMessage = (message) => {
   const errorArea = errorLoadDataTemplate.cloneNode(true);

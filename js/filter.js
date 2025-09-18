@@ -4,8 +4,8 @@ import { debounce } from './util.js';
 const MAX_PICTURES_COUNT = 10;
 const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 
-let currentFilter = 'filter-default';
 let pictures = [];
+let currentFilter = 'filter-default';
 
 const filterElement = document.querySelector('.img-filters');
 

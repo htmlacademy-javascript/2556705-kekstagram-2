@@ -1,4 +1,5 @@
 const COUNT_STEP = 5;
+
 let currentCount = 0;
 let comments = [];
 

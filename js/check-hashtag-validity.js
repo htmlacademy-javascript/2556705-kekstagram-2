@@ -7,9 +7,7 @@ const error = () => errorMessage;
 
 const isHashtagsValid = (value) => {
   errorMessage = '';
-
   const inputText = value.toLowerCase().trim();
-
   if(inputText.length === 0) {
     return true;
   }
