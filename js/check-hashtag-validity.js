@@ -3,7 +3,7 @@ const MAX_SYMBOLS = 20;
 
 let errorMessage = '';
 
-const error = () => errorMessage;
+const error = () => errorMessage; // !!! 
 
 const isHashtagsValid = (value) => {
   errorMessage = '';

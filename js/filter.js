@@ -40,7 +40,7 @@ function applyFilter() {
   debounceRender(filteredPictures);
 }
 
-function configFilter(picturesData) {
+function configFilter(picturesData) { //!!!
   filterElement.classList.remove('img-filters--inactive');
   filterElement.addEventListener('click', onFilterChange);
   pictures = picturesData;
