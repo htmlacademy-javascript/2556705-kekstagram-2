@@ -8,7 +8,6 @@ const socialComments = bigPicture.querySelector('.social__comments');
 const socialCommentTemplate = socialComments.querySelector('.social__comment');
 const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
-socialComments.innerHTMl = '';
 
 const renderNextComments = () => {
   const socialCommentsFragment = document.createDocumentFragment();
@@ -44,5 +43,7 @@ const renderComments = (currentPhotoComments) => {
   renderNextComments();
   commentsLoader.addEventListener('click', renderNextComments);
 };
+
+socialComments.innerHTMl = '';
 
 export { clearComments, renderComments };
