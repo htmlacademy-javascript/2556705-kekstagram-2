@@ -43,7 +43,9 @@ const enabledButton = (text) => {
 };
 
 const pristine = new Pristine(imgUploadForm, {
-  classTo: 'img-upload__form',
+  classTo: 'img-upload__field-wrapper',
+  errorClass: 'has-danger',
+  successClass: 'has-success',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
@@ -61,6 +63,7 @@ const onImgUploadClose = () => {
     item.style.backgroundImage = 'url("")';
   });
   document.removeEventListener('keydown', onEscapeKeydown);
+  imgUploadCancel.removeEventListener('click', onImgUploadClose);
 };
 
 function onEscapeKeydown (evt) {
@@ -97,6 +100,7 @@ const onHashtagInput = () => isHashtagsValid(inputHashtag.value);
 
 const sendFormData = async (formElement) => {
   const valid = pristine.validate();
+
   if (valid) {
     inputHashtag.value = inputHashtag.value.trim().replaceAll(/\s+/g, ' ');
     disabledButton(SubmitButtonText.SENDING);

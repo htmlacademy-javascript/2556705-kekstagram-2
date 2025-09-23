@@ -1,6 +1,5 @@
 const MAX_HASHTAGS = 5;
 const MAX_SYMBOLS = 20;
-
 let errorMessage = '';
 
 const getError = () => errorMessage;
