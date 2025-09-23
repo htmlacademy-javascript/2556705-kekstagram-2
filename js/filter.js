@@ -40,10 +40,10 @@ function applyFilter() {
   debounceRender(filteredPictures);
 }
 
-function configFilter(picturesData) { //!!!
+function getConfigFilter(picturesData) {
   filterElement.classList.remove('img-filters--inactive');
   filterElement.addEventListener('click', onFilterChange);
   pictures = picturesData;
 }
 
-export { configFilter };
+export { getConfigFilter };

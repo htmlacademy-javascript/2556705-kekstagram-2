@@ -23,8 +23,5 @@
   "engines": {
     "node": "^20",
     "npm": "^10"
-  },
-  "dependencies": {
-    "react-scripts": "^5.1.0-next.26"
   }
 }

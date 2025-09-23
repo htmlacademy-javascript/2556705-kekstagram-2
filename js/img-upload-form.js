@@ -1,6 +1,6 @@
 import { isEscapeKey, showErrorMessage } from './util.js';
 import { onEffectChange } from './effects-slider.js';
-import { error, isHashtagsValid } from './check-hashtag-validity.js';
+import { getError, isHashtagsValid } from './check-hashtag-validity.js';
 import { sendData } from './api.js';
 import { appendNotification } from './notification.js';
 
@@ -26,6 +26,7 @@ const imgSlider = imgUploadForm.querySelector('.img-upload__preview');
 const scaleControl = imgUploadForm.querySelector('.scale__control--value');
 const effectLevel = imgUploadForm.querySelector('.img-upload__effect-level');
 const effectsList = imgUploadForm.querySelector('.effects__list');
+const effectsElements = imgUploadForm.querySelectorAll('.effects__preview');
 const inputHashtag = imgUploadForm.querySelector('.text__hashtags');
 const formSubmitButton = imgUploadForm.querySelector('.img-upload__submit');
 const templateSuccess = document.querySelector('#success').content;
@@ -55,6 +56,10 @@ const onImgUploadClose = () => {
   effectLevel.classList.add('hidden');
   imgSlider.style.filter = 'none';
   imgUploadForm.reset();
+  img.src = '';
+  effectsElements.forEach((item) => {
+    item.style.backgroundImage = 'url("")';
+  });
   document.removeEventListener('keydown', onEscapeKeydown);
 };
 
@@ -119,6 +124,9 @@ function onFileInputChange (evt) {
   if (matches) {
     const url = URL.createObjectURL(file);
     img.src = url;
+    effectsElements.forEach((item) => {
+      item.style.backgroundImage = `url(${url})`;
+    });
   } else {
     document.body.classList.remove('modal-open');
     uploadOverlay.classList.add('hidden');
@@ -126,7 +134,7 @@ function onFileInputChange (evt) {
   }
 }
 
-pristine.addValidator(inputHashtag, isHashtagsValid, error, 2, false);
+pristine.addValidator(inputHashtag, isHashtagsValid, getError, 2, false);
 uploadFile.addEventListener('change', onPhotoSelect);
 smaller.addEventListener('click', onSmallerClick);
 bigger.addEventListener('click', onBiggerClick);
