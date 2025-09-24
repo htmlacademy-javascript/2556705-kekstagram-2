@@ -115,7 +115,7 @@ const sendFormData = async (formElement) => {
   }
 };
 
-const formSubmitHandler = (evt) => {
+const onFormSubmit = (evt) => {
   evt.preventDefault();
   sendFormData(evt.target);
 };
@@ -144,5 +144,5 @@ smaller.addEventListener('click', onSmallerClick);
 bigger.addEventListener('click', onBiggerClick);
 effectsList.addEventListener('change', onEffectChange);
 inputHashtag.addEventListener('input', onHashtagInput);
-imgUploadForm.addEventListener('submit', formSubmitHandler);
+imgUploadForm.addEventListener('submit', onFormSubmit);
 uploadFileInputElement.addEventListener('change', onFileInputChange);
