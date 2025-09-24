@@ -11,35 +11,35 @@ const isHashtagsValid = (value) => {
     return true;
   }
 
-  const inputArray = inputText.split(/\s+/);
+  const inputsArray = inputText.split(/\s+/);
 
   const rules = [
     {
-      check: inputArray.some((item) => item === '#'),
+      check: inputsArray.some((item) => item === '#'),
       getError: 'Хештег не может состоять из одной решетки',
     },
     {
-      check: inputArray.some((item) => item.slice(1).includes('#')),
+      check: inputsArray.some((item) => item.slice(1).includes('#')),
       getError: 'Хештеги разделяются пробелами',
     },
     {
-      check: inputArray.some((item) => item[0] !== '#'),
+      check: inputsArray.some((item) => item[0] !== '#'),
       getError: 'Хештег должен начитаться с символа \'#\'',
     },
     {
-      check: inputArray.some((item, num, array) => array.includes(item, num + 1)),
+      check: inputsArray.some((item, num, array) => array.includes(item, num + 1)),
       getError: 'Хештеги не должны повторяться',
     },
     {
-      check: inputArray.some((item) => item.length > MAX_SYMBOLS),
+      check: inputsArray.some((item) => item.length > MAX_SYMBOLS),
       getError: `Максимальная длина одного хештега ${MAX_SYMBOLS} символов, включая решетку`,
     },
     {
-      check: inputArray.length > MAX_HASHTAGS,
+      check: inputsArray.length > MAX_HASHTAGS,
       getError: `Максимальное количество хештегов не больше ${MAX_HASHTAGS}`,
     },
     {
-      check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
+      check: inputsArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
       getError: 'Хештег содержит недопустимые символы',
     },
   ];
