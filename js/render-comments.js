@@ -9,7 +9,7 @@ const socialCommentTemplate = socialComments.querySelector('.social__comment');
 const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
 
-const renderNextComments = () => {
+const onLoaderCommentsClick = () => {
   const socialCommentsFragment = document.createDocumentFragment();
   const renderedComments = comments.slice(currentCount, currentCount + COUNT_STEP);
   const renderedCommentsLength = renderedComments.length + currentCount;
@@ -35,13 +35,13 @@ const clearComments = () => {
   currentCount = 0;
   socialComments.innerHTML = '';
   commentsLoader.classList.remove('hidden');
-  commentsLoader.removeEventListener('click', renderNextComments);
+  commentsLoader.removeEventListener('click', onLoaderCommentsClick);
 };
 
 const renderComments = (currentPhotoComments) => {
   comments = currentPhotoComments;
-  renderNextComments();
-  commentsLoader.addEventListener('click', renderNextComments);
+  onLoaderCommentsClick();
+  commentsLoader.addEventListener('click', onLoaderCommentsClick);
 };
 
 socialComments.innerHTMl = '';

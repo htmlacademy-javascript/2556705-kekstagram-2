@@ -27,7 +27,7 @@ const isHashtagsValid = (value) => {
       getError: 'Хештег должен начитаться с символа \'#\'',
     },
     {
-      check: inputsArray.some((item, num, array) => array.includes(item, num + 1)),
+      check: inputsArray.some((item, num, arrays) => arrays.includes(item, num + 1)),
       getError: 'Хештеги не должны повторяться',
     },
     {
